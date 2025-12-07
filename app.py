@@ -8,8 +8,8 @@ app = Flask(__name__, static_folder="static", template_folder="templates")
 
 
 API_KEY = os.getenv("GEMINI_API_KEY")
-if not API_KEY:
-    raise RuntimeError("Missing GEMINI_API_KEY in .env")
+if not GEMINI_API_KEY:
+    print("Warning: GEMINI_API_KEY not found. Set it in WSGI file.")
 
 MODEL = "models/gemini-2.5-pro"  
 API_URL = f"https://generativelanguage.googleapis.com/v1beta/{MODEL}:generateContent?key={API_KEY}"
@@ -97,4 +97,5 @@ def debug():
 
 
 if __name__ == "__main__":
+
     app.run(debug=True)
